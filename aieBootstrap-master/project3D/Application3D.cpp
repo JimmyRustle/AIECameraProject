@@ -13,7 +13,7 @@ using aie::Input;
 
 Application3D::Application3D() {
 
-	flyCamera = new FlyCamera();
+	flyCamera = new FlyCamera(m_window, 10, 2.0f);
 }
 
 Application3D::~Application3D() {
@@ -23,9 +23,9 @@ Application3D::~Application3D() {
 bool Application3D::startup() {
 	
 	setBackgroundColour(0.25f, 0.25f, 0.25f);
+	
 	// initialise gizmo primitive counts
 	Gizmos::create(10000, 10000, 10000, 10000);
-
 	
 	float previousTime = 0;
 	float currentTime = (float)glfwGetTime(); 
@@ -58,7 +58,8 @@ void Application3D::update(float deltaTime) {
 	// rotate camera
 	//m_viewMatrix = glm::lookAt(vec3(glm::sin(time) * 10, 10, glm::cos(time) * 10),
 	//						   vec3(0), vec3(0, 1, 0));
-	flyCamera->SetLookAt(vec3(glm::sin(time) * 10, 10, glm::cos(time) * 10), vec3(0), vec3(0, 1, 0));
+	
+	//flyCamera->SetLookAt(vec3(glm::sin(time) * 10, 10, glm::cos(time) * 10), vec3(0), vec3(0, 1, 0));
 
 	flyCamera->Update(m_window, deltaTime);
 
